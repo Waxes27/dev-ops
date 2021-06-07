@@ -1,5 +1,14 @@
 FROM node:alpine
+
 COPY . /app
+
 WORKDIR /app
-CMD node app.js
+
+RUN apt install npm git -y && git clone https://github.com/waxes27/website
+
+WORKDIR /app/website
+
+RUN npm i
+
+CMD npm start
 
