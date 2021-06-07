@@ -1,14 +1,14 @@
-FROM node:alpine
+FROM debian:latest
 
 COPY . /app
 
 WORKDIR /app
 
-RUN apt install npm git -y && git clone https://github.com/waxes27/website
+RUN apt update && apt install nodejs git curl -y && curl https://www.npmjs.com/install.sh | sh
 
 WORKDIR /app/website
 
-RUN npm i
+RUN npm i npm@latest -g && npm i
 
 CMD npm start
 
